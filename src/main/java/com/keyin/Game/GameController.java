@@ -3,6 +3,8 @@ package com.keyin.Game;
 import com.keyin.Studio.Studio;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,8 +17,9 @@ public class GameController {
 
 
     @PostMapping("/addGame")
-    public void addGame(Game game){
-        gameService.addGame(game);
+    public ResponseEntity<Game> addGame(@RequestBody Game game){
+
+       return new ResponseEntity<>(gameService.addGame(game), HttpStatus.CREATED);
     }
 
     @GetMapping("/getAllGames")
@@ -37,6 +40,11 @@ public class GameController {
     @GetMapping("/getAllGamesForStudio/{studioId}")
     public Iterable<Game> getAllGamesOfStudio(@PathVariable Long studioId){
         return gameService.getGamesOfStudio(studioId);
+    }
+
+    @GetMapping("/getGameById/{gameId}")
+    public Game getGameById(@PathVariable Long gameId){
+        return gameService.getGameById(gameId).orElse(null);
     }
 
 }

@@ -2,7 +2,6 @@ package com.keyin.Game;
 
 import com.keyin.Studio.Studio;
 import com.keyin.Studio.StudioRepository;
-import com.keyin.Studio.StudioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +18,8 @@ public class GameService {
     @Autowired
     private StudioRepository studioRepository;
 
-    public void addGame(Game game){
-        gameRepository.save(game);
+    public Game addGame(Game game){
+       return gameRepository.save(game);
     }
     public void removeGame(Game game){
         gameRepository.delete(game);
@@ -57,7 +56,9 @@ public class GameService {
         }
         return null;
 
-
+    }
+    public Optional<Game> getGameById(Long gameId){
+        return gameRepository.findById(gameId);
     }
 
 
