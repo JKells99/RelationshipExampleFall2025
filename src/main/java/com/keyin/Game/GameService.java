@@ -61,6 +61,10 @@ public class GameService {
         return gameRepository.findById(gameId);
     }
 
+    public List<Game> getGamesByPlatformName(String platformName){
+        return gameRepository.findGamesByGameDetail_PlatformName(platformName);
+    }
+
 
 
 

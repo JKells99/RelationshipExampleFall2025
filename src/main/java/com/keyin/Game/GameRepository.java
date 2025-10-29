@@ -11,4 +11,5 @@ import java.util.List;
 public interface GameRepository extends JpaRepository <Game, Long>{
 
     List<Game> findByListOfStudiosContaining(Studio studio);
+    List<Game> findGamesByGameDetail_PlatformName(String platformName);
 }

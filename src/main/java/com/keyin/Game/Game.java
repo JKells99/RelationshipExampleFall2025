@@ -1,5 +1,6 @@
 package com.keyin.Game;
 
+import com.keyin.GameDetail.GameDetail;
 import com.keyin.Studio.Studio;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,11 @@ public class Game {
 
     @OneToMany
     private List<Studio> listOfStudios = new ArrayList<>();
+
+
+    // using CascadeType all will allow this to save automatically with the game with no extra code
+    @OneToOne(cascade = CascadeType.ALL)
+    private GameDetail gameDetail;
 
 
 
